@@ -5,16 +5,16 @@ import { NodeEnv } from './node.env';
 export class NodeExtension {
   static id = '@teambit/node';
 
-  // please replace to the nodeJS icon.
-  icon() {
-    return 'https://static.bit.dev/extensions-icons/react.svg';
-  }
+  static dependencies = [ReactExtension, Environments];
 
-  static dependencies = [Environments, ReactExtension];
-
-  static async provider([envs, react]: [Environments, ReactExtension]) {
-    const nodeEnv = envs.compose(new NodeEnv(), react.reactEnv);
-    envs.registerEnv(nodeEnv);
+  static async provider([react, envs]: [ReactExtension, Environments]) {
+    const env = envs.compose(new NodeEnv(react.reactEnv), react.reactEnv);
+    envs.registerEnv(env);
     return new NodeExtension();
   }
+
+  // please replace to the nodeJS icon.
+  // icon() {
+  //  return 'https://static.bit.dev/extensions-icons/node.svg';
+  // }
 }

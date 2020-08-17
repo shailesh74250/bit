@@ -1,4 +1,1 @@
-import { NodeExtension } from './node.extension';
-
-export { NodeExtension };
-export default NodeExtension;
+export { NodeExtension } from './node.extension';
